@@ -1,7 +1,0 @@
-{
-  "name": "wim_ionic2",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}
