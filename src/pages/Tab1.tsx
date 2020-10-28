@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
-
+import StartDiv from '../components/StartDiv';
 // import { addDataLayer } from "../map/addDataLayer";
 import { initializeMap } from "../map/initializeMap";
 // import { fetcher } from "../utilities/fetcher";
@@ -16,16 +16,17 @@ const Tab1: React.FC = () => {
 
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+  const [Load, setLoaded] = useState("not_loaded");
   const [width, setWidth] = React.useState(window.innerWidth);
-const [height, setHeight] = React.useState(window.innerHeight);
-const prevHeight = height;
-const prevWidth = width;
-console.log("Height:"+prevHeight);
-console.log("Width:"+prevWidth); 
-const updateWidthAndHeight = () => {
-  setWidth(753);
-  setHeight(1005);
-};
+  const [height, setHeight] = React.useState(window.innerHeight);
+  const prevHeight = height;
+  const prevWidth = width;
+  console.log("Height:"+prevHeight);
+  console.log("Width:"+prevWidth); 
+  const updateWidthAndHeight = () => {
+    setWidth(753);
+    setHeight(1005);
+  };
   const [temp, setTemp] = useState(0);
 
   mapboxgl.accessToken =
@@ -39,7 +40,7 @@ const updateWidthAndHeight = () => {
 
     let map = new mapboxgl.Map({
    
-      zoom: 10,
+      zoom: 13,
       
       container: "map",
       style: "mapbox://styles/mapbox/outdoors-v10",
@@ -66,24 +67,50 @@ const updateWidthAndHeight = () => {
 function loaded()
 {
 
- console.log("hi");
+  if(Load=="not_loaded")
+  {
+      setLoaded("loaded");
+      console.log("loaded");
+      var geolocate = new mapboxgl.GeolocateControl();
+      let map = new mapboxgl.Map({
+     
+          zoom: 13,
+          
+          container: "map",
+          style: "mapbox://styles/mapbox/outdoors-v10",
+          center: [
+            72.848784,19.128629
+          ],
+         
+          
+        
+        });
+        map.addControl(
+          new mapboxgl.GeolocateControl({
+            positionOptions: {
+              enableHighAccuracy: true,
+            },
+            trackUserLocation: true,
+          })
+        );
+      
+  
+    }
+  
 }
 
   return (
-    <div className="container" >
+    <div className="container"  >
         
-       <main className="main"  >
+       <main className="main" onFocus={loaded} >
         
-        <div id="map" style={{position:"absolute", width: "100%", height:"100%"}} />
+        <div id="map" style={{position:"absolute", width: "100%", height:"100%"}}  />
         
   {/* <b className="temp">{temp}</b> */}
-      </main>
-      <div className="form">
-        <form>
-          <label>Try</label>
-          <input type="text"/>
-        </form>
-      </div>
+      </main >
+      
+      <StartDiv />
+    
 </div>
 
 

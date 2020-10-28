@@ -1,0 +1,50 @@
+.App
+{
+
+text-align: center;
+align-items: center;
+
+
+}
+
+
+
+
+.landmark
+{
+  display: inline-block;
+
+   margin-top: 4vh;
+   margin-left: 0vw;
+   color: #1f6f8b;
+
+    transition: transform .9s ease-in-out;
+  
+
+    
+
+
+}
+.roads
+{
+    
+    display: inline-block;
+
+    margin-left: 1vw;
+
+    color: #1f6f8b;
+
+    transition: transform .9s ease-in-out;
+
+ 
+
+}
+
+
+.landmark:hover {
+    transform: scale(1.25); 
+  }
+
+.roads:hover {
+    transform: scale(1.25); 
+  }

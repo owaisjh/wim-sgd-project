@@ -1,0 +1,22 @@
+.container
+{
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+
+    /* width: 20vw;
+     */
+
+
+    background-color: #e6d5b8;
+
+
+    border-radius: 1.6vw;
+
+    color: black;
+
+    padding-bottom: 4.5vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+
+}

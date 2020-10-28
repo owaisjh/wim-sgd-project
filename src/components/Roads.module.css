@@ -1,0 +1,42 @@
+.App
+{
+
+
+
+}
+
+
+.back
+{
+  margin-top: 0.8vh;
+  margin-right: -13.5vw;
+  color: #912948;
+}
+
+
+
+.back:hover {
+  transform: scale(1.25); 
+}
+
+
+
+.text
+{
+  width: 16vw;
+  color:#1f6f8b;
+  display: block;
+  margin-top: 1vw;
+  
+
+  font-size: 1.4vw;
+
+}
+.buttonWrapper
+{
+  
+  display: block;
+  margin-top: 1vw;
+  color: green;
+
+}
