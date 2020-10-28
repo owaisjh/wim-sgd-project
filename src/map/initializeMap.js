@@ -47,4 +47,6 @@ export function initializeMap(mapboxgl, map) {
   map.on("mouseleave", "data", function () {
     map.getCanvas().style.cursor = "";
   });
+
+  map.resize();
 }
