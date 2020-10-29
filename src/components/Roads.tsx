@@ -4,11 +4,18 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Divider } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fade from '@material-ui/core/Fade';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import { createStyles, Theme, makeStyles, withStyles } from '@material-ui/core/styles';
 import { green, purple } from '@material-ui/core/colors';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
 
 import {sendRoute} from "../map/sendRoute";
 
@@ -16,7 +23,7 @@ import {sendRoute} from "../map/sendRoute";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 let a=0;
 let temp=0;
-var latlon:number[][]; 
+var latlon:number[][]=new Array(); 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
       root: {
@@ -38,13 +45,30 @@ const useStyles = makeStyles((theme: Theme) =>
 function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void) | undefined; }) {
 
     const [ButtonState, setButton] = useState("not_started");
-
+    const [startLandmark,setStartLandmark] =  useState("");
+    const [terminalLandmark,setTerminalLandmark] =  useState("");
+    const [startLandMarkType, setStartLandMarkType] =useState("school");
+    const [terminalLandMarkType, setTerminalLandmarkType] = useState("school");
     const classes = useStyles();  
         
     function delay(ms: number) {
         return new Promise( resolve => setTimeout(resolve, ms) );
     }
 
+
+    function handleChange(event: { target: { name: string; value: React.SetStateAction<string>; }; })     
+    { 
+      if(event.target.name=="startType"){
+        setStartLandMarkType(event.target.value);
+      } else if(event.target.name="endType"){
+        setTerminalLandmarkType(event.target.value);
+      } else if(event.target.name="startName"){
+        setStartLandmark(event.target.value);
+      }
+      else{
+      setTerminalLandmark(event.target.value);
+      }     
+    }
 async function start()
 {
     setButton("started");
@@ -56,11 +80,9 @@ async function start()
     {
       if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position=>{
-          latlon[temp].push(position.coords.latitude);
-            
-            
-            latlon[temp].push(position.coords.longitude);
-            temp++;
+
+          latlon.push([position.coords.latitude,position.coords.longitude]);
+          
         });
       }
     
@@ -76,7 +98,7 @@ function stop()
     a=1;
     setButton("stopped");
     console.log("stopped")
-
+    console.log(latlon);
 
 }
 
@@ -101,8 +123,56 @@ return(
  
     <b className={styles.text}>Press Start to Initialize Route Collection</b>
 
-    <div className={styles.buttonWrapper}>
+    <div className={styles.wrapper}>
+    <div>
+    <div>
+    <label>Select Type of Start Landmark:</label>
+
+    <select name="starttype" id="cars" className={styles.selector} onChange={handleChange}>
+        <option value="school">School</option>
+        <option value="hospital">Hospital</option>
+        <option value="temple">Temple</option>
+        <option value="mosque">Mosque</option>
+        <option value="church">Church</option>
+    </select>
+    </div>
+
+
     
+    <div className={styles.emailInputWrapper} >
+                <input className={styles.emailInput}
+                    name="startName"
+                    placeholder="Name"
+                    onChange={handleChange}
+                />
+    </div>
+    
+    </div>
+
+    <div>
+    <div>
+    <label>Select Type of End Landmark:</label>
+
+    <select name="endtype" id="cars" className={styles.selector} onChange={handleChange}>
+        <option value="school">School</option>
+        <option value="hospital">Hospital</option>
+        <option value="temple">Temple</option>
+        <option value="mosque">Mosque</option>
+        <option value="church">Church</option>
+    </select>
+    </div>
+
+
+    
+    <div className={styles.emailInputWrapper} >
+                <input className={styles.emailInput}
+                    name="endName"
+                    placeholder="Name"
+                    onChange={handleChange}
+                />
+    </div>
+    
+    </div>
     
     {
         ButtonState == "not_started" ?
