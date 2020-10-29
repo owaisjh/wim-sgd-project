@@ -14,3 +14,76 @@
   
 }
 
+.text
+{
+  width: 16vw;
+  color:#1f6f8b;
+  display: block;
+  margin-top: 1vw;
+  
+
+  font-size: 1.4vw;
+
+}
+
+
+.emailInputWrapper
+{
+    display: inline-block;
+    position: relative;
+  
+   
+    left: 0;
+    margin-top: 2.5vh;
+
+    background: #FFFFFF;
+    border: 0.05208333vw solid #CDCDCD;
+    box-sizing: border-box;
+    border-radius: 1.0417vw;
+    padding: 0vw 0.5vw 0vw 1vw;
+
+}
+.emailInput
+{
+    display: inline-block;
+    
+    width: 13vw;   
+    height: 2vw;
+    /* left: 1.3542vw;
+    top: 0.05vw; */
+
+    background: #FFFFFF;
+   
+    border:none;
+
+  
+
+}
+
+
+.emailButton
+{
+    display: inline;
+    position: absolute;
+    text-align: center;
+
+    right: -0.5vw;
+    top: -0.08vw;
+
+
+    padding: 0vw 1.2vw 0vw 1.2vw;
+    bottom: 0vw;
+
+
+    background: #1f6f8b;
+    border-radius: 0vw 0.52083333vw 0.52083333vw 0vw;
+    border:none;
+
+
+}
+.emailLogo
+{
+    color:white;
+
+}
+      

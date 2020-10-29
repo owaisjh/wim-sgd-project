@@ -10,8 +10,13 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 import { createStyles, Theme, makeStyles, withStyles } from '@material-ui/core/styles';
 import { green, purple } from '@material-ui/core/colors';
 
-const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
+import {sendRoute} from "../map/sendRoute";
 
+
+const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
+let a=0;
+let temp=0;
+var latlon:number[][]; 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
       root: {
@@ -34,8 +39,8 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
 
     const [ButtonState, setButton] = useState("not_started");
 
-    const classes = useStyles();
-
+    const classes = useStyles();  
+        
     function delay(ms: number) {
         return new Promise( resolve => setTimeout(resolve, ms) );
     }
@@ -45,29 +50,33 @@ async function start()
     setButton("started");
     console.log("started");
 
-    while(ButtonState=="started")
-    {
-    var geolocate = new mapboxgl.GeolocateControl();
+    
   
+    while(ButtonState=="not_started" && a==0)
+    {
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(position=>{
+          latlon[temp].push(position.coords.latitude);
+            
+            
+            latlon[temp].push(position.coords.longitude);
+            temp++;
+        });
+      }
     
-    geolocate.on('geolocate', function(e: { coords: { longitude: any; latitude: any; }; }) {
-          var lon = e.coords.longitude;
-          var lat = e.coords.latitude
-          var position = [lon, lat];
-          console.log(position);
-    });
-    
-    console.log("hi");
+        console.log("hi");
 
-    await delay(500);
+        await delay(2500);
     }
 
 }
 
 function stop()
 {
+    a=1;
     setButton("stopped");
-    console.log("stopped");
+    console.log("stopped")
+
 
 }
 
@@ -75,6 +84,9 @@ function send()
 {
     console.log("sent");
     setButton("not_started");    
+    a=0;
+    temp=0;
+    console.log(latlon);
 
 }
 
