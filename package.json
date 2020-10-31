@@ -52,5 +52,6 @@
     "@capacitor/cli": "2.4.2",
     "react-scripts": "3.4.0"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "proxy:": "http://localhost:5000/"
 }

@@ -4,25 +4,31 @@ import styles from "./Landmarks.module.css";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { handLeft } from 'ionicons/icons';
+import { type } from 'os';
+// const axios = require('axios');
 
 function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void) | undefined; }) {
     
     const [name, setName] = useState("");
     const [typeLandmark,setTypeLandMark] = useState("school");
+   
     
+    function delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
-
-    function getPosition(){
-        if(navigator.geolocation){
-          navigator.geolocation.getCurrentPosition(position=>
-            {
-            console.log(position.coords.latitude,position.coords.longitude);
-            console.log(name);
-            console.log(typeLandmark);
+    // function getPosition(){
+    //     if(navigator.geolocation){
+    //       navigator.geolocation.getCurrentPosition(async (position)=>
+    //         {
+            
+            
+    //         latitude=position.coords.latitude;
+    //         longitude=position.coords.longitude;
           
-          });
-        }
-      };
+    //     });
+    //   };
+    // };
 
       function handleChange(event: { target: { name: string; value: React.SetStateAction<string>; }; })     
       { 
@@ -33,6 +39,51 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
         setName(event.target.value);
         }     
       }
+
+      async function handleSubmit(event: { preventDefault: () => void; }){
+        
+        event.preventDefault();
+        let latitude;
+        let longitude ;     
+        if(navigator.geolocation){
+          console.log("hi");
+          navigator.geolocation.getCurrentPosition(position=>
+            {
+            
+            
+            latitude=position.coords.latitude;
+            longitude=position.coords.longitude;
+              
+        });
+      };  
+
+      await delay (250);
+      
+        
+        console.log(typeof(typeLandmark));
+        console.log(name);
+        
+        const temp = JSON.stringify({
+          landmark_type:typeLandmark,
+          landmark_name:name,
+            latitude: latitude,
+            longitude: longitude,
+        });
+
+        const response = await fetch('http://localhost:5000/storeLandmark', {  //Hosted Apis on localhost:5000
+          method: 'POST',
+          headers:{
+            'Content-Type' : 'application/json',
+          },
+          body: temp,
+        });
+        
+        const body = await response.text();
+        console.log(latitude);
+        console.log(longitude);
+        console.log('sent');
+      };
+
 return(
     <div className={styles.Container}>
 
@@ -42,7 +93,9 @@ return(
     <br/>
 
     <b className={styles.text}>Please enter the details of the location</b>
-    <br/>    
+    
+    <br/>
+    <form onSubmit={handleSubmit}>    
     <div>
     <label>Select Type of Landmark:</label>
 
@@ -59,18 +112,18 @@ return(
     
     <div className={styles.emailInputWrapper} >
                 <input className={styles.emailInput}
-                    name="text"
+                    name="name"
                     placeholder="Name"
                     onChange={handleChange}
                 />
 
-                <button className={styles.emailButton} onClick={getPosition}>
+                <button type="submit" className={styles.emailButton}>
                    <LocationOnIcon className={styles.emailLogo} /> 
                 </button>
         
 
     </div> 
-
+    </form>
 
 
 
