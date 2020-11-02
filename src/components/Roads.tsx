@@ -60,12 +60,12 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
     { 
       if(event.target.name=="startType"){
         setStartLandMarkType(event.target.value);
-      } else if(event.target.name="endType"){
+      } else if(event.target.name=="endType"){
         setTerminalLandmarkType(event.target.value);
-      } else if(event.target.name="startName"){
+      } else if(event.target.name=="startName"){
         setStartLandmark(event.target.value);
       }
-      else{
+      else if(event.target.name=="endName"){
       setTerminalLandmark(event.target.value);
       }     
     }
@@ -112,6 +112,40 @@ function send()
 
 }
 
+
+ async function handleSubmit(event: { preventDefault: () => void; }){
+        
+        event.preventDefault();
+        await delay (250);
+      
+        
+        
+        const temp = JSON.stringify({
+          start_landmark_type: startLandMarkType,
+          start_landmark:startLandmark,
+          end_landmark_type:terminalLandMarkType,
+          end_landmark:terminalLandmark,
+          route: latlon,
+        });
+
+        const response = await fetch('http://localhost:5000/storeRoutes', {  //Hosted Apis on localhost:5000
+          method: 'POST',
+          headers:{
+            'Content-Type' : 'application/json',
+          },
+          body: temp,
+        });
+        
+        const body = await response.text();
+        
+        console.log('sent');
+        setButton("not_started");
+        setStartLandmark("");
+        setStartLandMarkType("school");
+        setTerminalLandmark("");
+        setTerminalLandmarkType("school");
+      };
+
 return(
     <div className={styles.Container}>
 
@@ -122,13 +156,13 @@ return(
 
  
     <b className={styles.text}>Press Start to Initialize Route Collection</b>
-
+    <form onSubmit={handleSubmit}>
     <div className={styles.wrapper}>
     <div>
     <div>
     <label>Select Type of Start Landmark:</label>
 
-    <select name="starttype" id="cars" className={styles.selector} onChange={handleChange}>
+    <select name="startType" id="cars" className={styles.selector} onChange={handleChange}>
         <option value="school">School</option>
         <option value="hospital">Hospital</option>
         <option value="temple">Temple</option>
@@ -153,7 +187,7 @@ return(
     <div>
     <label>Select Type of End Landmark:</label>
 
-    <select name="endtype" id="cars" className={styles.selector} onChange={handleChange}>
+    <select name="endType" id="cars" className={styles.selector} onChange={handleChange}>
         <option value="school">School</option>
         <option value="hospital">Hospital</option>
         <option value="temple">Temple</option>
@@ -193,7 +227,7 @@ return(
     }
      {
         ButtonState == "stopped" ?
-        <Fab variant="extended" color="inherit" aria-label="add" className={classes.margin} onClick={send}>
+        <Fab variant="extended" color="inherit" aria-label="add" className={classes.margin} type="submit">
         <NavigationIcon className={classes.extendedIcon} />
         Send?
         </Fab>  
@@ -207,7 +241,7 @@ return(
 
 
     </div>
-
+    </form>
     </div>
 );
 

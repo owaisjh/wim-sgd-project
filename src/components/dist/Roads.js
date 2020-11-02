@@ -73,13 +73,13 @@ function Roads(props) {
         if (event.target.name == "startType") {
             setStartLandMarkType(event.target.value);
         }
-        else if (event.target.name = "endType") {
+        else if (event.target.name == "endType") {
             setTerminalLandmarkType(event.target.value);
         }
-        else if (event.target.name = "startName") {
+        else if (event.target.name == "startName") {
             setStartLandmark(event.target.value);
         }
-        else {
+        else if (event.target.name == "endName") {
             setTerminalLandmark(event.target.value);
         }
     }
@@ -121,48 +121,90 @@ function Roads(props) {
         temp = 0;
         console.log(latlon);
     }
+    function handleSubmit(event) {
+        return __awaiter(this, void 0, void 0, function () {
+            var temp, response, body;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        event.preventDefault();
+                        return [4 /*yield*/, delay(250)];
+                    case 1:
+                        _a.sent();
+                        temp = JSON.stringify({
+                            start_landmark_type: startLandMarkType,
+                            start_landmark: startLandmark,
+                            end_landmark_type: terminalLandMarkType,
+                            end_landmark: terminalLandmark,
+                            route: latlon
+                        });
+                        return [4 /*yield*/, fetch('http://localhost:5000/storeRoutes', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: temp
+                            })];
+                    case 2:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.text()];
+                    case 3:
+                        body = _a.sent();
+                        console.log('sent');
+                        setButton("not_started");
+                        setStartLandmark("");
+                        setStartLandMarkType("school");
+                        setTerminalLandmark("");
+                        setTerminalLandmarkType("school");
+                        return [2 /*return*/];
+                }
+            });
+        });
+    }
+    ;
     return (react_1["default"].createElement("div", { className: Roads_module_css_1["default"].Container },
         react_1["default"].createElement(ExitToApp_1["default"], { className: Roads_module_css_1["default"].back, style: { fontSize: "2vw" }, onClick: props.Back }),
         react_1["default"].createElement("br", null),
         react_1["default"].createElement("b", { className: Roads_module_css_1["default"].text }, "Press Start to Initialize Route Collection"),
-        react_1["default"].createElement("div", { className: Roads_module_css_1["default"].wrapper },
-            react_1["default"].createElement("div", null,
+        react_1["default"].createElement("form", { onSubmit: handleSubmit },
+            react_1["default"].createElement("div", { className: Roads_module_css_1["default"].wrapper },
                 react_1["default"].createElement("div", null,
-                    react_1["default"].createElement("label", null, "Select Type of Start Landmark:"),
-                    react_1["default"].createElement("select", { name: "starttype", id: "cars", className: Roads_module_css_1["default"].selector, onChange: handleChange },
-                        react_1["default"].createElement("option", { value: "school" }, "School"),
-                        react_1["default"].createElement("option", { value: "hospital" }, "Hospital"),
-                        react_1["default"].createElement("option", { value: "temple" }, "Temple"),
-                        react_1["default"].createElement("option", { value: "mosque" }, "Mosque"),
-                        react_1["default"].createElement("option", { value: "church" }, "Church"))),
-                react_1["default"].createElement("div", { className: Roads_module_css_1["default"].emailInputWrapper },
-                    react_1["default"].createElement("input", { className: Roads_module_css_1["default"].emailInput, name: "startName", placeholder: "Name", onChange: handleChange }))),
-            react_1["default"].createElement("div", null,
+                    react_1["default"].createElement("div", null,
+                        react_1["default"].createElement("label", null, "Select Type of Start Landmark:"),
+                        react_1["default"].createElement("select", { name: "startType", id: "cars", className: Roads_module_css_1["default"].selector, onChange: handleChange },
+                            react_1["default"].createElement("option", { value: "school" }, "School"),
+                            react_1["default"].createElement("option", { value: "hospital" }, "Hospital"),
+                            react_1["default"].createElement("option", { value: "temple" }, "Temple"),
+                            react_1["default"].createElement("option", { value: "mosque" }, "Mosque"),
+                            react_1["default"].createElement("option", { value: "church" }, "Church"))),
+                    react_1["default"].createElement("div", { className: Roads_module_css_1["default"].emailInputWrapper },
+                        react_1["default"].createElement("input", { className: Roads_module_css_1["default"].emailInput, name: "startName", placeholder: "Name", onChange: handleChange }))),
                 react_1["default"].createElement("div", null,
-                    react_1["default"].createElement("label", null, "Select Type of End Landmark:"),
-                    react_1["default"].createElement("select", { name: "endtype", id: "cars", className: Roads_module_css_1["default"].selector, onChange: handleChange },
-                        react_1["default"].createElement("option", { value: "school" }, "School"),
-                        react_1["default"].createElement("option", { value: "hospital" }, "Hospital"),
-                        react_1["default"].createElement("option", { value: "temple" }, "Temple"),
-                        react_1["default"].createElement("option", { value: "mosque" }, "Mosque"),
-                        react_1["default"].createElement("option", { value: "church" }, "Church"))),
-                react_1["default"].createElement("div", { className: Roads_module_css_1["default"].emailInputWrapper },
-                    react_1["default"].createElement("input", { className: Roads_module_css_1["default"].emailInput, name: "endName", placeholder: "Name", onChange: handleChange }))),
-            ButtonState == "not_started" ?
-                react_1["default"].createElement(Fab_1["default"], { variant: "extended", color: "primary", "aria-label": "add", className: classes.margin, onClick: start },
-                    react_1["default"].createElement(Navigation_1["default"], { className: classes.extendedIcon }),
-                    "Start")
-                : react_1["default"].createElement("b", null),
-            ButtonState == "started" ?
-                react_1["default"].createElement(Fab_1["default"], { variant: "extended", color: "secondary", "aria-label": "add", className: classes.margin, onClick: stop },
-                    react_1["default"].createElement(Navigation_1["default"], { className: classes.extendedIcon }),
-                    "Stop")
-                : react_1["default"].createElement("b", null),
-            ButtonState == "stopped" ?
-                react_1["default"].createElement(Fab_1["default"], { variant: "extended", color: "inherit", "aria-label": "add", className: classes.margin, onClick: send },
-                    react_1["default"].createElement(Navigation_1["default"], { className: classes.extendedIcon }),
-                    "Send?")
-                : react_1["default"].createElement("b", null))));
+                    react_1["default"].createElement("div", null,
+                        react_1["default"].createElement("label", null, "Select Type of End Landmark:"),
+                        react_1["default"].createElement("select", { name: "endType", id: "cars", className: Roads_module_css_1["default"].selector, onChange: handleChange },
+                            react_1["default"].createElement("option", { value: "school" }, "School"),
+                            react_1["default"].createElement("option", { value: "hospital" }, "Hospital"),
+                            react_1["default"].createElement("option", { value: "temple" }, "Temple"),
+                            react_1["default"].createElement("option", { value: "mosque" }, "Mosque"),
+                            react_1["default"].createElement("option", { value: "church" }, "Church"))),
+                    react_1["default"].createElement("div", { className: Roads_module_css_1["default"].emailInputWrapper },
+                        react_1["default"].createElement("input", { className: Roads_module_css_1["default"].emailInput, name: "endName", placeholder: "Name", onChange: handleChange }))),
+                ButtonState == "not_started" ?
+                    react_1["default"].createElement(Fab_1["default"], { variant: "extended", color: "primary", "aria-label": "add", className: classes.margin, onClick: start },
+                        react_1["default"].createElement(Navigation_1["default"], { className: classes.extendedIcon }),
+                        "Start")
+                    : react_1["default"].createElement("b", null),
+                ButtonState == "started" ?
+                    react_1["default"].createElement(Fab_1["default"], { variant: "extended", color: "secondary", "aria-label": "add", className: classes.margin, onClick: stop },
+                        react_1["default"].createElement(Navigation_1["default"], { className: classes.extendedIcon }),
+                        "Stop")
+                    : react_1["default"].createElement("b", null),
+                ButtonState == "stopped" ?
+                    react_1["default"].createElement(Fab_1["default"], { variant: "extended", color: "inherit", "aria-label": "add", className: classes.margin, type: "submit" },
+                        react_1["default"].createElement(Navigation_1["default"], { className: classes.extendedIcon }),
+                        "Send?")
+                    : react_1["default"].createElement("b", null)))));
 }
 ;
 exports["default"] = Roads;
