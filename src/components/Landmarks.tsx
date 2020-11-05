@@ -10,7 +10,9 @@ import { type } from 'os';
 function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void) | undefined; }) {
     
     const [name, setName] = useState("");
+    const [village, setVillage] = useState("");
     const [typeLandmark,setTypeLandMark] = useState("school");
+
    
     
     function delay(ms: number) {
@@ -35,7 +37,9 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
         if(event.target.name=="type"){
           setTypeLandMark(event.target.value);
         }
-        else{
+        else if(event.target.name=="village"){
+          setVillage(event.target.value);
+        } else{
         setName(event.target.value);
         }     
       }
@@ -68,6 +72,7 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
           landmark_name:name,
             latitude: latitude,
             longitude: longitude,
+          village:village  
         });
 
         const response = await fetch('http://localhost:5000/storeLandmark', {  //Hosted Apis on localhost:5000
@@ -108,7 +113,14 @@ return(
     </select>
     </div>
 
-
+    <div>
+      <label>Village:</label>
+      <input 
+        name="village"
+        placeholder="Village Name"
+        onChange={handleChange}
+      />       
+    </div>
     
     <div className={styles.emailInputWrapper} >
                 <input className={styles.emailInput}

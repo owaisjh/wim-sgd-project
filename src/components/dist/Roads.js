@@ -65,6 +65,8 @@ function Roads(props) {
     var _c = react_1.useState(""), terminalLandmark = _c[0], setTerminalLandmark = _c[1];
     var _d = react_1.useState("school"), startLandMarkType = _d[0], setStartLandMarkType = _d[1];
     var _e = react_1.useState("school"), terminalLandMarkType = _e[0], setTerminalLandmarkType = _e[1];
+    var _f = react_1.useState(""), startVillage = _f[0], setStartVillage = _f[1];
+    var _g = react_1.useState(""), endVillage = _g[0], setEndVillage = _g[1];
     var classes = useStyles();
     function delay(ms) {
         return new Promise(function (resolve) { return setTimeout(resolve, ms); });
@@ -81,6 +83,12 @@ function Roads(props) {
         }
         else if (event.target.name == "endName") {
             setTerminalLandmark(event.target.value);
+        }
+        else if (event.target.name == "startVillage") {
+            setStartVillage(event.target.value);
+        }
+        else if (event.target.name == "endVillage") {
+            setEndVillage(event.target.value);
         }
     }
     function start() {
@@ -136,6 +144,8 @@ function Roads(props) {
                             start_landmark: startLandmark,
                             end_landmark_type: terminalLandMarkType,
                             end_landmark: terminalLandmark,
+                            startVillage: startVillage,
+                            terminalVillage: endVillage,
                             route: latlon
                         });
                         return [4 /*yield*/, fetch('http://localhost:5000/storeRoutes', {
@@ -177,7 +187,11 @@ function Roads(props) {
                             react_1["default"].createElement("option", { value: "temple" }, "Temple"),
                             react_1["default"].createElement("option", { value: "mosque" }, "Mosque"),
                             react_1["default"].createElement("option", { value: "church" }, "Church"))),
+                    react_1["default"].createElement("div", null,
+                        react_1["default"].createElement("label", null, " Starting Landmark Village:"),
+                        react_1["default"].createElement("input", { name: "startVillage", placeholder: "Village Name", onChange: handleChange })),
                     react_1["default"].createElement("div", { className: Roads_module_css_1["default"].emailInputWrapper },
+                        react_1["default"].createElement("label", null, "Starting Landmark Name:"),
                         react_1["default"].createElement("input", { className: Roads_module_css_1["default"].emailInput, name: "startName", placeholder: "Name", onChange: handleChange }))),
                 react_1["default"].createElement("div", null,
                     react_1["default"].createElement("div", null,
@@ -188,7 +202,11 @@ function Roads(props) {
                             react_1["default"].createElement("option", { value: "temple" }, "Temple"),
                             react_1["default"].createElement("option", { value: "mosque" }, "Mosque"),
                             react_1["default"].createElement("option", { value: "church" }, "Church"))),
+                    react_1["default"].createElement("div", null,
+                        react_1["default"].createElement("label", null, " Starting Landmark Village:"),
+                        react_1["default"].createElement("input", { name: "endVillage", placeholder: "Village Name", onChange: handleChange })),
                     react_1["default"].createElement("div", { className: Roads_module_css_1["default"].emailInputWrapper },
+                        react_1["default"].createElement("label", null, "Starting Landmark Name:"),
                         react_1["default"].createElement("input", { className: Roads_module_css_1["default"].emailInput, name: "endName", placeholder: "Name", onChange: handleChange }))),
                 ButtonState == "not_started" ?
                     react_1["default"].createElement(Fab_1["default"], { variant: "extended", color: "primary", "aria-label": "add", className: classes.margin, onClick: start },

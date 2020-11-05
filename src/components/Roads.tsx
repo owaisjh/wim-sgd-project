@@ -49,6 +49,8 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
     const [terminalLandmark,setTerminalLandmark] =  useState("");
     const [startLandMarkType, setStartLandMarkType] =useState("school");
     const [terminalLandMarkType, setTerminalLandmarkType] = useState("school");
+    const [startVillage, setStartVillage] = useState("");
+    const [endVillage, setEndVillage] = useState("");
     const classes = useStyles();  
         
     function delay(ms: number) {
@@ -64,10 +66,13 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
         setTerminalLandmarkType(event.target.value);
       } else if(event.target.name=="startName"){
         setStartLandmark(event.target.value);
-      }
-      else if(event.target.name=="endName"){
+      } else if(event.target.name=="endName"){
       setTerminalLandmark(event.target.value);
-      }     
+      } else if(event.target.name=="startVillage"){
+        setStartVillage(event.target.value);
+      } else if(event.target.name=="endVillage"){
+        setEndVillage(event.target.value);
+      }             
     }
 async function start()
 {
@@ -125,6 +130,8 @@ function send()
           start_landmark:startLandmark,
           end_landmark_type:terminalLandMarkType,
           end_landmark:terminalLandmark,
+          startVillage: startVillage,
+          terminalVillage:endVillage,
           route: latlon,
         });
 
@@ -171,14 +178,23 @@ return(
     </select>
     </div>
 
+    <div>
+      <label> Starting Landmark Village:</label>
+      <input 
+        name="startVillage"
+        placeholder="Village Name"
+        onChange={handleChange}
+      />       
+    </div>
 
     
     <div className={styles.emailInputWrapper} >
-                <input className={styles.emailInput}
-                    name="startName"
-                    placeholder="Name"
-                    onChange={handleChange}
-                />
+    <label>Starting Landmark Name:</label>
+      <input className={styles.emailInput}
+          name="startName"
+          placeholder="Name"
+          onChange={handleChange}
+      />
     </div>
     
     </div>
@@ -195,15 +211,23 @@ return(
         <option value="church">Church</option>
     </select>
     </div>
-
-
+    
+    <div>
+      <label> Starting Landmark Village:</label>
+      <input 
+        name="endVillage"
+        placeholder="Village Name"
+        onChange={handleChange}
+      />       
+    </div>
     
     <div className={styles.emailInputWrapper} >
-                <input className={styles.emailInput}
-                    name="endName"
-                    placeholder="Name"
-                    onChange={handleChange}
-                />
+      <label>Starting Landmark Name:</label>
+      <input className={styles.emailInput}
+          name="endName"
+          placeholder="Name"
+          onChange={handleChange}
+      />
     </div>
     
     </div>

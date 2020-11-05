@@ -43,7 +43,8 @@ var LocationOn_1 = require("@material-ui/icons/LocationOn");
 // const axios = require('axios');
 function Roads(props) {
     var _a = react_1.useState(""), name = _a[0], setName = _a[1];
-    var _b = react_1.useState("school"), typeLandmark = _b[0], setTypeLandMark = _b[1];
+    var _b = react_1.useState(""), village = _b[0], setVillage = _b[1];
+    var _c = react_1.useState("school"), typeLandmark = _c[0], setTypeLandMark = _c[1];
     function delay(ms) {
         return new Promise(function (resolve) { return setTimeout(resolve, ms); });
     }
@@ -59,6 +60,9 @@ function Roads(props) {
     function handleChange(event) {
         if (event.target.name == "type") {
             setTypeLandMark(event.target.value);
+        }
+        else if (event.target.name == "village") {
+            setVillage(event.target.value);
         }
         else {
             setName(event.target.value);
@@ -88,7 +92,8 @@ function Roads(props) {
                             landmark_type: typeLandmark,
                             landmark_name: name,
                             latitude: latitude,
-                            longitude: longitude
+                            longitude: longitude,
+                            village: village
                         });
                         return [4 /*yield*/, fetch('http://localhost:5000/storeLandmark', {
                                 method: 'POST',
@@ -125,6 +130,9 @@ function Roads(props) {
                     react_1["default"].createElement("option", { value: "temple" }, "Temple"),
                     react_1["default"].createElement("option", { value: "mosque" }, "Mosque"),
                     react_1["default"].createElement("option", { value: "church" }, "Church"))),
+            react_1["default"].createElement("div", null,
+                react_1["default"].createElement("label", null, "Village:"),
+                react_1["default"].createElement("input", { name: "village", placeholder: "Village Name", onChange: handleChange })),
             react_1["default"].createElement("div", { className: Landmarks_module_css_1["default"].emailInputWrapper },
                 react_1["default"].createElement("input", { className: Landmarks_module_css_1["default"].emailInput, name: "name", placeholder: "Name", onChange: handleChange }),
                 react_1["default"].createElement("button", { type: "submit", className: Landmarks_module_css_1["default"].emailButton },
