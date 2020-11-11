@@ -72,22 +72,22 @@ function Roads(props) {
         return new Promise(function (resolve) { return setTimeout(resolve, ms); });
     }
     function handleChange(event) {
-        if (event.target.name == "startType") {
+        if (event.target.name === "startType") {
             setStartLandMarkType(event.target.value);
         }
-        else if (event.target.name == "endType") {
+        else if (event.target.name === "endType") {
             setTerminalLandmarkType(event.target.value);
         }
-        else if (event.target.name == "startName") {
+        else if (event.target.name === "startName") {
             setStartLandmark(event.target.value);
         }
-        else if (event.target.name == "endName") {
+        else if (event.target.name === "endName") {
             setTerminalLandmark(event.target.value);
         }
-        else if (event.target.name == "startVillage") {
+        else if (event.target.name === "startVillage") {
             setStartVillage(event.target.value);
         }
-        else if (event.target.name == "endVillage") {
+        else if (event.target.name === "endVillage") {
             setEndVillage(event.target.value);
         }
     }
@@ -129,9 +129,29 @@ function Roads(props) {
         temp = 0;
         console.log(latlon);
     }
+    function submitRoutePostgres(data) {
+        var response = fetch('http://localhost:5000/storeRoutes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        });
+        return response;
+    }
+    function submitRouteNeo4j(data) {
+        var response = fetch('http://localhost:5000/add_route', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        });
+        return response;
+    }
     function handleSubmit(event) {
         return __awaiter(this, void 0, void 0, function () {
-            var temp, response, body;
+            var temp, response_1, response_2, body_1, body_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -148,18 +168,18 @@ function Roads(props) {
                             terminalVillage: endVillage,
                             route: latlon
                         });
-                        return [4 /*yield*/, fetch('http://localhost:5000/storeRoutes', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: temp
-                            })];
+                        return [4 /*yield*/, submitRoutePostgres(temp)];
                     case 2:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.text()];
+                        response_1 = _a.sent();
+                        return [4 /*yield*/, submitRouteNeo4j(temp)];
                     case 3:
-                        body = _a.sent();
+                        response_2 = _a.sent();
+                        return [4 /*yield*/, response_1.text()];
+                    case 4:
+                        body_1 = _a.sent();
+                        return [4 /*yield*/, response_2.text()];
+                    case 5:
+                        body_2 = _a.sent();
                         console.log('sent');
                         setButton("not_started");
                         setStartLandmark("");

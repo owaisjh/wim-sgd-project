@@ -60,17 +60,17 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
 
     function handleChange(event: { target: { name: string; value: React.SetStateAction<string>; }; })     
     { 
-      if(event.target.name=="startType"){
+      if(event.target.name==="startType"){
         setStartLandMarkType(event.target.value);
-      } else if(event.target.name=="endType"){
+      } else if(event.target.name==="endType"){
         setTerminalLandmarkType(event.target.value);
-      } else if(event.target.name=="startName"){
+      } else if(event.target.name==="startName"){
         setStartLandmark(event.target.value);
-      } else if(event.target.name=="endName"){
+      } else if(event.target.name==="endName"){
       setTerminalLandmark(event.target.value);
-      } else if(event.target.name=="startVillage"){
+      } else if(event.target.name==="startVillage"){
         setStartVillage(event.target.value);
-      } else if(event.target.name=="endVillage"){
+      } else if(event.target.name==="endVillage"){
         setEndVillage(event.target.value);
       }             
     }
@@ -117,7 +117,27 @@ function send()
 
 }
 
+function submitRoutePostgres(data: any){
+  const response = fetch('http://localhost:5000/storeRoutes', {  //Hosted Apis on localhost:5000
+          method: 'POST',
+          headers:{
+            'Content-Type' : 'application/json',
+          },
+          body: data,
+        });
+  return response;
+}
 
+function submitRouteNeo4j(data: any){
+  const response = fetch('http://localhost:5000/add_route', {  //Hosted Apis on localhost:5000
+          method: 'POST',
+          headers:{
+            'Content-Type' : 'application/json',
+          },
+          body: data,
+        });
+  return response;
+}
  async function handleSubmit(event: { preventDefault: () => void; }){
         
         event.preventDefault();
@@ -135,15 +155,11 @@ function send()
           route: latlon,
         });
 
-        const response = await fetch('http://localhost:5000/storeRoutes', {  //Hosted Apis on localhost:5000
-          method: 'POST',
-          headers:{
-            'Content-Type' : 'application/json',
-          },
-          body: temp,
-        });
-        
-        const body = await response.text();
+       
+        const response_1 = await submitRoutePostgres(temp);
+        const response_2 = await submitRouteNeo4j(temp);
+        const body_1 = await response_1.text();
+        const body_2 = await response_2.text();
         
         console.log('sent');
         setButton("not_started");

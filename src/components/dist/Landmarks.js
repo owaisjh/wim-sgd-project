@@ -68,9 +68,29 @@ function Roads(props) {
             setName(event.target.value);
         }
     }
+    function sendPostgresql(data) {
+        var response = fetch('http://localhost:5000/storeLandmark', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        });
+        return response;
+    }
+    function sendNeo4j(data) {
+        var response = fetch('http://localhost:5000/add_landmark', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        });
+        return response;
+    }
     function handleSubmit(event) {
         return __awaiter(this, void 0, void 0, function () {
-            var latitude, longitude, temp, response, body;
+            var latitude, longitude, temp, response_1, response_2, body_1, body_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -95,20 +115,18 @@ function Roads(props) {
                             longitude: longitude,
                             village: village
                         });
-                        return [4 /*yield*/, fetch('http://localhost:5000/storeLandmark', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: temp
-                            })];
+                        return [4 /*yield*/, sendPostgresql(temp)];
                     case 2:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.text()];
+                        response_1 = _a.sent();
+                        return [4 /*yield*/, sendNeo4j(temp)];
                     case 3:
-                        body = _a.sent();
-                        console.log(latitude);
-                        console.log(longitude);
+                        response_2 = _a.sent();
+                        return [4 /*yield*/, response_1.text()];
+                    case 4:
+                        body_1 = _a.sent();
+                        return [4 /*yield*/, response_2.text()];
+                    case 5:
+                        body_2 = _a.sent();
                         console.log('sent');
                         return [2 /*return*/];
                 }

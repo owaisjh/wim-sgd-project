@@ -44,6 +44,28 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
         }     
       }
 
+      function sendPostgresql(data: any){
+        const response = fetch('http://localhost:5000/storeLandmark', {  //Hosted Apis on localhost:5000
+          method: 'POST',
+          headers:{
+            'Content-Type' : 'application/json',
+          },
+          body: data,
+        });
+        return response;
+      }
+
+      function sendNeo4j(data: any){
+        const response = fetch( 'http://localhost:5000/add_landmark' ,{  //Hosted Apis on localhost:5000
+          method: 'POST',
+          headers:{
+            'Content-Type' : 'application/json',
+          },
+          body: data,
+        });
+        return response;
+      }
+
       async function handleSubmit(event: { preventDefault: () => void; }){
         
         event.preventDefault();
@@ -75,17 +97,11 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
           village:village  
         });
 
-        const response = await fetch('http://localhost:5000/storeLandmark', {  //Hosted Apis on localhost:5000
-          method: 'POST',
-          headers:{
-            'Content-Type' : 'application/json',
-          },
-          body: temp,
-        });
         
-        const body = await response.text();
-        console.log(latitude);
-        console.log(longitude);
+        const response_1 = await sendPostgresql(temp);
+        const response_2 = await sendNeo4j(temp);
+        const body_1 = await response_1.text();
+        const body_2 = await response_2.text();
         console.log('sent');
       };
 
