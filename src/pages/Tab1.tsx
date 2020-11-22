@@ -8,8 +8,10 @@ import { initializeMap } from "../map/initializeMap";
 // import { fetcher } from "../utilities/fetcher";
 import styles from "../styles/Home.module.css";
 // import { map, resize } from 'ionicons/icons';
-const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
-
+import 'mapbox-gl/dist/mapbox-gl.css' // Updating node module will keep css up to date.
+import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css' 
+var mapboxgl = require("mapbox-gl");
+var MapboxDirections = require('@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions');
 
 
 const Tab1: React.FC = () => {
@@ -93,7 +95,12 @@ function loaded()
             trackUserLocation: true,
           })
         );
-      
+        var directions = new MapboxDirections({
+          accessToken:   mapboxgl.accessToken,
+          unit: 'metric',
+          profile: 'mapbox/driving'
+        });
+      map.addControl(directions, 'top-right');
   
     }
   
