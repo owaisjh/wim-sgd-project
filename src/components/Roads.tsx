@@ -181,28 +181,35 @@ return(
     <b className={styles.text}>Press Start to Initialize Route Collection</b>
     <form onSubmit={handleSubmit}>
     <div className={styles.wrapper}>
+    <br/>
+    <br/>
+    <div className={styles.BigWrapper}>
     <div>
     <div>
     <label>Select Type of Start Landmark:</label>
 
-    <select name="startType" id="cars" className={styles.selector} onChange={handleChange}>
+    <select name="startType" id="cars" className={styles.selector1} onChange={handleChange}> 
+      
+
         <option value="school">School</option>
         <option value="hospital">Hospital</option>
         <option value="temple">Temple</option>
         <option value="mosque">Mosque</option>
         <option value="church">Church</option>
+        <option value="other">Other</option>
     </select>
     </div>
 
-    <div>
+    <div className={styles.emailInputWrapper}>
       <label> Starting Landmark Village:</label>
-      <input 
+      <input className={styles.emailInput}
         name="startVillage"
         placeholder="Village Name"
         onChange={handleChange}
       />       
     </div>
 
+  
     
     <div className={styles.emailInputWrapper} >
     <label>Starting Landmark Name:</label>
@@ -219,18 +226,23 @@ return(
     <div>
     <label>Select Type of End Landmark:</label>
 
-    <select name="endType" id="cars" className={styles.selector} onChange={handleChange}>
+    <select name="endType" id="cars" className={styles.selector2} onChange={handleChange}>
         <option value="school">School</option>
         <option value="hospital">Hospital</option>
         <option value="temple">Temple</option>
         <option value="mosque">Mosque</option>
         <option value="church">Church</option>
+
     </select>
+
+
+
+
     </div>
     
-    <div>
+    <div className={styles.emailInputWrapper}>
       <label> Starting Landmark Village:</label>
-      <input 
+      <input className={styles.emailInput}
         name="endVillage"
         placeholder="Village Name"
         onChange={handleChange}
@@ -247,7 +259,9 @@ return(
     </div>
     
     </div>
-    
+
+    </div>
+    <br/>
     {
         ButtonState == "not_started" ?
         <Fab variant="extended" color="primary" aria-label="add" className={classes.margin} onClick={start}>
@@ -274,20 +288,11 @@ return(
         : <b/>
     }
          
-    
-
-
-
-
 
     </div>
     </form>
     </div>
 );
-
-
-
-
 
 };
 

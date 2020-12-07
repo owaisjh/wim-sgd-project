@@ -1,8 +1,7 @@
 .App
 {
 
-
-
+  
 }
 
 
@@ -14,12 +13,28 @@
 }
 
 
+.BigWrapper
+{
+  align-items: left;
+  text-align: left;
+
+}
 
 .back:hover {
   transform: scale(1.25); 
 }
 
+.selector1{
+ 
+  border-radius: 1vw;
+  height: 2.5vh;
+}
 
+.selector2{
+  margin-top: 0.5vh;
+  border-radius: 1vw;
+  height: 2.5vh;
+}
 
 .text
 {
@@ -38,5 +53,23 @@
   display: block;
   margin-top: 1vw;
   color: green;
+
+}
+.emailInput
+{
+    display: inline-block;
+    position: relative;
+  
+   
+    left: 0;
+    margin-top: 0.5vh;
+
+    background: #FFFFFF;
+    border: 0.05208333vw solid #CDCDCD;
+    box-sizing: border-box;
+    border-radius: 1.0417vw;
+    padding: 0vw 0.5vw 0vw 1vw;
+    width: 10vw;   
+    height: 1.5vw;
 
 }
