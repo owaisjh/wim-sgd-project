@@ -1,1 +1,2 @@
-web: npm install @ionic/cli && ionic serve 
+web: npm install @ionic/cli && ionic serve --port $PORT 
+
