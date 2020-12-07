@@ -26,9 +26,11 @@
 .container
 {
     position: absolute;
-    top: 5vh;
-    left: 5vw;
+    top: 190vw;
+    left: 0vw;
 
+    width: 100vw;
+    border-radius: 10vw;
     /* width: 20vw;
      */
 
@@ -36,7 +38,7 @@
     background-color: #e6d5b8;
 
 
-    border-radius: 1.6vw;
+
 
     color: black;
 
