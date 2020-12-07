@@ -31,7 +31,6 @@
     "@capacitor/cli": "2.4.2",
     "@types/mapbox-gl": "^1.12.8",
     "react-scripts": "3.4.0", 
-    "ionic": ""
   },
   "scripts": {
     "start": "react-scripts start",
