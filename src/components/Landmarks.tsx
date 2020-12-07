@@ -116,6 +116,8 @@ return(
     <b className={styles.text}>Please enter the details of the location</b>
     
     <br/>
+
+    <div className={styles.Big}>
     <form onSubmit={handleSubmit}>    
     <div>
     <label>Select Type of Landmark:</label>
@@ -131,7 +133,7 @@ return(
 
     <div>
       <label>Village:</label>
-      <input 
+      <input className={styles.Input}
         name="village"
         placeholder="Village Name"
         onChange={handleChange}
@@ -154,7 +156,7 @@ return(
     </form>
 
 
-
+  </div>
     </div>
 
 );

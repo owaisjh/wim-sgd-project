@@ -28,7 +28,9 @@
 }
 
 .selector{
+ 
   border-radius: 1vw;
+  height: 2.5vh;
 }
 
 .wrapper{
@@ -44,8 +46,8 @@
   
    
     left: 0;
-    margin-top: 2.5vh;
-
+    margin-top: 1vh;
+    margin-left: -1vw;
     background: #FFFFFF;
     border: 0.05208333vw solid #CDCDCD;
     box-sizing: border-box;
@@ -69,7 +71,24 @@
   
 
 }
+.Input
+{
+    display: inline-block;
+    position: relative;
+  
+   
+    left: 0;
+    margin-top: 0.5vh;
 
+    background: #FFFFFF;
+    border: 0.05208333vw solid #CDCDCD;
+    box-sizing: border-box;
+    border-radius: 1.0417vw;
+    padding: 0vw 0.5vw 0vw 1vw;
+    width: 10vw;   
+    height: 1.5vw;
+
+}
 
 .emailButton
 {
@@ -94,6 +113,14 @@
 .emailLogo
 {
     color:white;
+
+}
+.Big
+{
+  text-align: left;
+  margin-left:2vw;
+  margin-top: 0.5vw;
+
 
 }
 
