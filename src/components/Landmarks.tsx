@@ -45,7 +45,7 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
       }
 
       function sendPostgresql(data: any){
-        const response = fetch('http://localhost:5000/storeLandmark', {  //Hosted Apis on localhost:5000
+        const response = fetch('https://992c3ecc5ec3.ngrok.io/storeLandmark', {  //Hosted Apis on localhost:5000
           method: 'POST',
           headers:{
             'Content-Type' : 'application/json',
@@ -56,7 +56,8 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
       }
 
       function sendNeo4j(data: any){
-        const response = fetch( 'http://localhost:5000/add_landmark' ,{  //Hosted Apis on localhost:5000
+    
+        const response = fetch( 'https://992c3ecc5ec3.ngrok.io/add_landmark' ,{  //Hosted Apis on localhost:5000
           method: 'POST',
           headers:{
             'Content-Type' : 'application/json',
@@ -83,12 +84,12 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
         });
       };  
 
-      await delay (250);
+      await delay (4000);
       
         
         console.log(typeof(typeLandmark));
         console.log(name);
-        
+        console.log(latitude);
         const temp = JSON.stringify({
           landmark_type:typeLandmark,
           landmark_name:name,
@@ -97,7 +98,7 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
           village:village  
         });
 
-        
+        console.log(temp);
         const response_1 = await sendPostgresql(temp);
         const response_2 = await sendNeo4j(temp);
         const body_1 = await response_1.text();

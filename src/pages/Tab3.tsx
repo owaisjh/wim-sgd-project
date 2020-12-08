@@ -97,7 +97,7 @@ const Tab2: React.FC = () => {
 
       // const encodedSLandmark = encodeURIComponent(startLandmark);
       // const encodedELandmark = encodeURIComponent(endLandmark);
-      fetch(`http://localhost:5000/getRoute?start_name=${startLandmark}&end_name=${endLandmark}`)
+      fetch(`https://992c3ecc5ec3.ngrok.io/getRoute?start_name=${startLandmark}&end_name=${endLandmark}`)
       .then((response)=>response.json())
       .then((data) =>{setGeoData(data); setTemp(1);});
   }
