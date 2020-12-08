@@ -32,7 +32,7 @@ var mapboxgl = require("mapbox-gl");
 const Tab2: React.FC = () => {
 
   const [pageIsMounted, setPageIsMounted] = useState(false);
-  const [Map3, setMap3] = useState();
+  const [map3, setMap3] = useState();
   const [Load, setLoaded] = useState("not_loaded");
   const [width, setWidth] = React.useState(window.innerWidth);
   const [height, setHeight] = React.useState(window.innerHeight);
@@ -45,6 +45,8 @@ const Tab2: React.FC = () => {
     setHeight(1005);
   };
   const [temp, setTemp] = useState(0);
+  const [geoData, setGeoData] = useState([{}]);
+
 
   mapboxgl.accessToken =
     "pk.eyJ1IjoiYWRpYWpnMTY5IiwiYSI6ImNrZ204ang1MDBpcnoycm8xc3I5cDlzMnAifQ.CQlynGnQmIdrW68HSoAynQ";
@@ -69,16 +71,70 @@ const Tab2: React.FC = () => {
     
     });
     
-    initializeMap(mapboxgl, map3);
+    // initializeMap(mapboxgl, map3);
     
     setMap3(map3);
-    window.addEventListener("onload", updateWidthAndHeight);
+    // window.addEventListener("onload", updateWidthAndHeight);
     
     console.log(map3);
     
    
     
   }, []);
+  const [startLandmark,setStartLandmark] = useState('');
+  const [endLandmark,setEndLandmark] = useState(''); 
+  function handleChange(event: { target: { name: string; value: React.SetStateAction<string>; }; })     
+      { 
+        if(event.target.name=="startLandmark"){
+          setStartLandmark(event.target.value);
+          console.log(startLandmark);
+        }
+        else{
+          setEndLandmark(event.target.value);
+        }
+      }
+ async function getRoutesql(startLandmark: any,endLandmark: any){
+
+      // const encodedSLandmark = encodeURIComponent(startLandmark);
+      // const encodedELandmark = encodeURIComponent(endLandmark);
+      fetch(`http://localhost:5000/getRoute?start_name=${startLandmark}&end_name=${endLandmark}`)
+      .then((response)=>response.json())
+      .then((data) =>{setGeoData(data); setTemp(1);});
+  }
+
+  function addLineString(map:any,data:any){
+
+    if (!map.getSource("postgresdb-r")) {
+    map.addSource("postgresdb-r", {
+      type: "geojson",
+      data: data[0],
+    });
+  } else {
+    map.getSource("postgresdb-r").setData(data[0]);
+  }
+
+      map.addLayer({
+      'id': 'postgresdb-r',
+      'type': 'line',
+      'source': 'postgresdb-r',
+      'layout': {
+      'line-join': 'round',
+      'line-cap': 'round'
+      },
+      'paint': {
+      'line-color': '#888',
+      'line-width': 8
+      }
+      });
+  }
+  async function handleSubmit(){
+        getRoutesql(startLandmark,endLandmark);
+        console.log(geoData);
+
+        if(temp==1){
+          addLineString(map3,geoData);
+        }
+  }
 
   
 function loaded()
@@ -110,7 +166,8 @@ function loaded()
             trackUserLocation: true,
           })
         );
-    
+
+        setMap3(map3);
   
     }
   
@@ -134,7 +191,7 @@ function loaded()
 
       <div className="SingleWrapper">
 
-      <h3 className="Single"> Enter road details</h3>
+      <h4 className="Single"> Enter road details</h4>
 
     
         
@@ -146,17 +203,17 @@ function loaded()
 
       
       <input className="emailInput"
-        name="endVillage"
+        name="startLandmark"
         placeholder="Starting Landmark"
-        // onChange={handleChange}
+        onChange={handleChange}
       />       
 
     
 
       <input className="emailInput"
-          name="endName"
-          placeholder="Ending Landmark:"
-          // onChange={handleChange}
+          name="endLandmark"
+          placeholder="Ending Landmark"
+          onChange={handleChange}
       />
 
 
@@ -167,7 +224,7 @@ function loaded()
 
 
     <Button variant="contained" color="secondary" className="showAll" 
-    // onClick={handleAlldata}
+    onClick={handleSubmit}
     
     >
         Search?

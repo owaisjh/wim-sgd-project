@@ -181,14 +181,14 @@ function loaded()
  
       </main >
       
-      <div className="holder" >
+      <div className={styles.holder} >
       
         
       
 
 
-        <Button variant="contained" color="secondary" className={styles.showAll} onClick={handleAlldata}>
-          Show All Landmarks
+        <Button variant="contained" color="secondary" className={styles.showAll} onClick={handleAlldata} style={{fontSize:"inherit"}}>
+          Show All 
         </Button>
 
         <div className={styles.SingleWrapper}>
@@ -219,7 +219,7 @@ function loaded()
                   />
 
                   <button onClick={handleSubmit} className={styles.emailButton}>
-                    <SearchIcon className={styles.emailLogo}/> 
+                    <SearchIcon className={styles.emailLogo} style={{fontSize:"inherit"}} /> 
                   </button>
           
 

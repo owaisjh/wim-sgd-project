@@ -71,17 +71,87 @@
     margin-top: -0.5vw;
 
 }
+.holder
+{
+    
+      position: absolute;
+      top:5vh;
+      left:5vw;
+      height:20vh;
+      width:20vw;
+      background-color: antiquewhite;
+      border-radius: 2vw;
+    
 
+}
 @media only screen and (max-width: 812px)
 {
 
-        .container
-        {
-            width: 500vw;
-            height: 500vh;
+    .SingleWrapper
+{
+    margin-left: 3vw;
+    margin-top: -3vh;
 
+}
+        .holder
+        {
+            width: 60vw;
+            height: 20vh;
+            font-size: 2vw;
+            border-radius: 5vw;
 
         }
+        .showAll
+        {
+            width: 20vw;
+            height: 2.5vh;
+            font-size: 2vw;
+            border-radius: 20vh;
+            top: 15vh;
+        }
 
+    .emailInputWrapper
+{
+    
+   
+    left: 0;
+    margin-top: 0vh;
+    margin-left: -1vw;
+    background: #FFFFFF;
+    border: 0.05208333vw solid #CDCDCD;
+    box-sizing: border-box;
+    border-radius: 1.0417vw;
+    padding: 0vw 1vw 0vw 2vw;
+
+}
+.emailInput
+{
+  
+    
+    width: 40vw;   
+    height: 4vw;
+    /* left: 1.3542vw;
+    top: 0.05vw; */
+
+  
+  
+
+}
+
+
+.emailButton
+{
+    
+
+    right: -0.5vw;
+    top: -0.08vw;
+
+
+    padding: 0vw 1.2vw 0vw 1.2vw;
+
+    border-radius: 0vw 1vw 1vw 0vw;
+
+
+}
 
 }
