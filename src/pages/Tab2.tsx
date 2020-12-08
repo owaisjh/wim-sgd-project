@@ -12,7 +12,7 @@ import 'mapbox-gl/dist/mapbox-gl.css' // Updating node module will keep css up t
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
-
+import Footer from '../components/footer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -216,7 +216,7 @@ function loaded()
 
 
 
-    
+   <Footer /> 
 </div>
 
 

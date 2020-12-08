@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 import StartDiv from '../components/StartDiv';
+import Footer from '../components/footer';
 // import { addDataLayer } from "../map/addDataLayer";
 import { initializeMap } from "../map/initializeMap";
 // import { fetcher } from "../utilities/fetcher";
@@ -119,7 +120,9 @@ function loaded()
       
       <StartDiv />
   
-      
+    <Footer />
+
+
   
 </div>
 
