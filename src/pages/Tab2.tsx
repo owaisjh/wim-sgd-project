@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab2.css';
+import styles from "./Tab2.module.css"
 import StartDiv from '../components/StartDiv';
 import { addDataLayer } from "../map/addDataLayer";
 import { initializeMap } from "../map/initializeMap";
@@ -187,28 +187,44 @@ function loaded()
       
 
 
-      <Button variant="contained" color="secondary" className="showAll" onClick={handleAlldata}>
-        Show All Landmarks
-      </Button>
+        <Button variant="contained" color="secondary" className="showAll" onClick={handleAlldata}>
+          Show All Landmarks
+        </Button>
 
-      <div className="SingleWrapper">
+        <div className="SingleWrapper">
 
-      <h4 className="Single"> Enter the name of the landmark</h4>
+        <h4 className="Single"> Enter the name of the landmark</h4>
 
-      <div className="emailInputWrapper" >
-                <input className="emailInput"
+{/* 
+ <div className={styles.emailInputWrapper} >
+                <input className={styles.emailInput}
                     name="name"
                     placeholder="Name"
                     onChange={handleChange}
                 />
 
-                <button onClick={handleSubmit} className="emailButton">
-                   <SearchIcon className="emailLogo" /> 
+                <button type="submit" className={styles.emailButton}>
+                   <LocationOnIcon className={styles.emailLogo} /> 
                 </button>
         
 
     </div> 
-    </div>
+ */}
+
+        <div className={styles.emailInputWrapper} >
+                  <input className={styles.emailInput}
+                      name="name"
+                      placeholder="Name"
+                      onChange={handleChange}
+                  />
+
+                  <button onClick={handleSubmit} className={styles.emailButton}>
+                    <SearchIcon className={styles.emailLogo}/> 
+                  </button>
+          
+
+          </div> 
+        </div>
 
 
     </div>
