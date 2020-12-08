@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
 import StartDiv from '../components/StartDiv';
-// import { addDataLayer } from "../map/addDataLayer";
+import { addDataLayer } from "../map/addDataLayer";
 import { initializeMap } from "../map/initializeMap";
 // import { fetcher } from "../utilities/fetcher";
 import styles from "../styles/Home.module.css";
@@ -30,7 +30,7 @@ var mapboxgl = require("mapbox-gl");
 const Tab2: React.FC = () => {
 
   const [pageIsMounted, setPageIsMounted] = useState(false);
-  const [Map2, setMap2] = useState();
+  const [map, setMap] = useState();
   const [Load, setLoaded] = useState("not_loaded");
   const [width, setWidth] = React.useState(window.innerWidth);
   const [height, setHeight] = React.useState(window.innerHeight);
@@ -43,22 +43,38 @@ const Tab2: React.FC = () => {
     setHeight(1005);
   };
   const [temp, setTemp] = useState(0);
-
+  const [geoData, setGeoData] = useState([{
+    id:null,
+    landmark_name:null,
+    geometry:{
+      type:null,
+      coordinates:[]
+    }
+  }]);
+  const [name,setName] = useState("");
+  var  marker, markerPopUp;
   mapboxgl.accessToken =
     "pk.eyJ1IjoiYWRpYWpnMTY5IiwiYSI6ImNrZ204ang1MDBpcnoycm8xc3I5cDlzMnAifQ.CQlynGnQmIdrW68HSoAynQ";
+  
+    async function getLandmarksql(name:string){
 
+      const encodedLandmark = encodeURIComponent(name);
+      fetch(`http://localhost:5000/getLandmark?landmark_name=${name}`)
+      .then((response)=>response.json())
+      .then((data) =>{setGeoData(data); setTemp(1);});
+  }
 
 
 
   useEffect(() => {
     setPageIsMounted(true);
 
-    let map2 = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
    
       zoom: 13,
       
       container: "map",
-      style: "mapbox://styles/mapbox/outdoors-v10",
+      style: "mapbox://styles/mapbox/outdoors-v11",
       center: [
         72.848784,19.128629
       ],
@@ -67,18 +83,57 @@ const Tab2: React.FC = () => {
     
     });
     
-    initializeMap(mapboxgl, map2);
+    // initializeMap(mapboxgl, map);
     
-    setMap2(map2);
-    window.addEventListener("onload", updateWidthAndHeight);
+    setMap(map);
+    //window.addEventListener("onload", updateWidthAndHeight);
     
-    console.log(map2);
+    console.log(map);
     
    
     
   }, []);
 
-  
+  function handleChange(event: { target: { name: string; value: React.SetStateAction<string>; }; })     
+      { 
+        if(event.target.name=="name"){
+          setName(event.target.value);
+          console.log(name);
+        }
+      }
+  async function handleSubmit(){
+    console.log(name);
+    getLandmarksql(name);
+    console.log(geoData);
+    
+    if(temp==1){
+      var name_=geoData[0].landmark_name;
+    var lat=geoData[0].geometry.coordinates[0];
+    var long=geoData[0].geometry.coordinates[1];
+    console.log(geoData[0].geometry);
+    console.log(name_);
+    var markerPopUp = new mapboxgl.Popup({closeOnClick: false})
+    .setText(name_)
+    .setLngLat([long,lat]);
+    console.log(markerPopUp);
+
+    var marker = new mapboxgl.Marker()
+    .setLngLat([long,lat])
+    .setPopup(markerPopUp)
+    .addTo(map);
+    console.log(marker);
+  }
+}
+
+function handleAlldata(){
+  fetch(`http://localhost:5000/getAllLandmark`)
+  .then((response)=>response.json())
+  .then((data) =>{setGeoData(data); setTemp(1);});
+  console.log(geoData);
+  if(temp==1){
+  addDataLayer(map,geoData[0]);
+}
+}
 function loaded()
 {
 
@@ -87,7 +142,7 @@ function loaded()
       setLoaded("loaded");
       console.log("loaded");
       var geolocate = new mapboxgl.GeolocateControl();
-      let map2 = new mapboxgl.Map({
+      let map = new mapboxgl.Map({
      
           zoom: 13,
           
@@ -100,7 +155,8 @@ function loaded()
           
         
         });
-        map2.addControl(
+       
+        map.addControl(
           new mapboxgl.GeolocateControl({
             positionOptions: {
               enableHighAccuracy: true,
@@ -108,6 +164,7 @@ function loaded()
             trackUserLocation: true,
           })
         );
+        setMap(map);
     
   
     }
@@ -117,7 +174,7 @@ function loaded()
   return (
     <div className="container"  >
         
-       <main className="main" onFocus={loaded} >
+       <main className="main" onFocus={loaded}>
         
         <div id="map" style={{position:"absolute", width: "100%", height:"100%"}}  />
         
@@ -130,7 +187,7 @@ function loaded()
       
 
 
-      <Button variant="contained" color="secondary" className="showAll">
+      <Button variant="contained" color="secondary" className="showAll" onClick={handleAlldata}>
         Show All Landmarks
       </Button>
 
@@ -142,10 +199,10 @@ function loaded()
                 <input className="emailInput"
                     name="name"
                     placeholder="Name"
-                    // onChange={handleChange}
+                    onChange={handleChange}
                 />
 
-                <button type="submit" className="emailButton">
+                <button onClick={handleSubmit} className="emailButton">
                    <SearchIcon className="emailLogo" /> 
                 </button>
         

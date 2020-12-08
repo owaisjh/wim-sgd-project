@@ -101,6 +101,7 @@ function loaded()
           profile: 'mapbox/driving'
         });
       map.addControl(directions, 'top-right');
+      setMap(map);
   
     }
   
