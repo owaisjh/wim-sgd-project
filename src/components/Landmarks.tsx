@@ -109,9 +109,12 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
 return(
     <div className={styles.Container}>
 
-    <ExitToAppIcon className={styles.back} style={{fontSize:"2vw"}}  onClick={props.Back}
+    <div className={styles.Cont}>
+    <ExitToAppIcon className={styles.back} style={{fontSize:"inherit"}}  onClick={props.Back}
     
     />
+
+    </div>
     <br/>
 
     <b className={styles.text}>Please enter the details of the location</b>
@@ -149,7 +152,7 @@ return(
                 />
 
                 <button type="submit" className={styles.emailButton}>
-                   <LocationOnIcon className={styles.emailLogo} /> 
+                   <LocationOnIcon className={styles.emailLogo}  style={{fontSize:"inherit"}} /> 
                 </button>
         
 

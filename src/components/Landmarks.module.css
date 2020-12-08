@@ -4,7 +4,12 @@
 
 
 }
+.Cont
+{
 
+
+  font-size: 2vw;
+}
 
 .back
 {
@@ -107,12 +112,13 @@
     background: #1f6f8b;
     border-radius: 0vw 0.52083333vw 0.52083333vw 0vw;
     border:none;
-
+    font-size: 1vw;
 
 }
 .emailLogo
 {
     color:white;
+ 
 
 }
 .Big
@@ -127,6 +133,110 @@
 @media only screen and (max-width: 812px)
 {
 
+  .Cont
+  {
+  
+  
+    font-size: 6vw;
+  }
+  
 
+  .text
+{
+  
+  width: 50vw;
+ 
+  margin-top: -1.5vh;
+  margin-left:  3vw; 
+
+  font-size: 3vw;
+
+}
+
+
+
+
+.emailInputWrapper
+{
+    display: inline-block;
+    position: relative;
+  
+   
+    left: 0;
+    margin-top: 1vh;
+    margin-left: -1vw;
+    background: #FFFFFF;
+    border: 0.05208333vw solid #CDCDCD;
+    box-sizing: border-box;
+    border-radius: 1.0417vw;
+    padding: 0vw 0.5vw 0vw 1vw;
+
+}
+.emailInput
+{
+    display: inline-block;
+    
+    width: 40vw;   
+    height: 3vw;
+    /* left: 1.3542vw;
+    top: 0.05vw; */
+
+    background: #FFFFFF;
+   
+    border:none;
+
+  
+
+}
+
+
+.emailButton
+{
+   
+
+    right: -0.5vw;
+    top: -0.08vw;
+
+
+    padding: 0vw 2vw 0vw 2vw;
+    bottom: 0vw;
+
+
+    background: #1f6f8b;
+    border-radius: 0vw 2vw 2vw 0vw;
+    border:none;
+    font-size: 3vw;
+
+
+}
+.emailLogo
+{
+    color:white;
+    
+
+}
+
+.Input
+{
+  
+   
+    left: 0;
+    margin-top: 0.5vh;
+
+    background: #FFFFFF;
+    border: 0.05208333vw solid #CDCDCD;
+    box-sizing: border-box;
+    border-radius: 2vw;
+    padding: 0vw 1vw 0vw 2vw;
+    width: 30vw;   
+    height: 5vw;
+
+}
+
+.selector{
+ 
+  border-radius: 2vw;
+  height: 2.5vh;
+}
 
 }

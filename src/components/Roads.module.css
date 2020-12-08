@@ -4,7 +4,12 @@
   
 }
 
+.Cont
+{
 
+
+  font-size: 2vw;
+}
 .back
 {
   margin-top: 0.8vh;
@@ -73,3 +78,57 @@
     height: 1.5vw;
 
 }
+
+
+@media only screen and (max-width: 812px) {
+
+
+  .text{
+
+    width: 45vw;
+    color:#1f6f8b;
+    display: block;
+    margin-top: -5vw;
+    margin-left: 5vw;
+  
+    font-size: 4vw;
+
+  }
+
+
+  .Cont
+  {
+  
+  
+    font-size: 8vw;
+  }
+  .selector1{
+ 
+    border-radius: 2vw;
+    height: 3vh;
+  }
+  
+  .selector2{
+    margin-top: 1vh;
+    border-radius: 2vw;
+    height: 3vh;
+  }
+  .emailInput
+  {
+      
+     
+      left: 0;
+      margin-top: 1vh;
+  
+      border: 0.1vw solid #CDCDCD;
+     
+      border-radius: 2vw;
+      padding: 0vw 1vw 0vw 2vw;
+      width: 20vw;   
+      height: 4vw;
+  
+  }
+
+
+}
+

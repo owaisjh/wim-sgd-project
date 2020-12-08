@@ -172,9 +172,12 @@ function submitRouteNeo4j(data: any){
 return(
     <div className={styles.Container}>
 
-    <ExitToAppIcon className={styles.back} style={{fontSize:"2vw"}}  onClick={props.Back}
+  <div className={styles.Cont}>
+    <ExitToAppIcon className={styles.back} style={{fontSize:"inherit"}}  onClick={props.Back}
     
     />
+
+    </div>
     <br/>
 
  
@@ -264,7 +267,7 @@ return(
     <br/>
     {
         ButtonState == "not_started" ?
-        <Fab variant="extended" color="primary" aria-label="add" className={classes.margin} onClick={start}>
+        <Fab variant="extended" color="primary" aria-label="add" className={classes.margin} style={{fontSize:"inherit"}} onClick={start}>
         <NavigationIcon className={classes.extendedIcon} />
         Start
         </Fab>  
