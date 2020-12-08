@@ -223,7 +223,7 @@ function loaded()
 
 
 
-    <Button variant="contained" color="secondary" className="showAll" 
+    <Button variant="contained" color="secondary" className="showAll"  style={{fontSize:"inherit"}} 
     onClick={handleSubmit}
     
     >

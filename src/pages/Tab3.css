@@ -149,8 +149,41 @@
 }
 @media only screen and (max-width: 812px)
 {
-
+  .holder
+  {
+    
+    width: 60vw;
+            height: 20vh;
+            font-size: 2vw;
+            border-radius: 5vw;
+            top:4vh;
+  }
   
 
+  .emailInput
+  {
+    
+    width: 40vw;   
+    height: 3vh;
+    
+    
+  
+  
+  
+  
+  }
+  .SingleWrapper
+{
+  margin-top: -2vw;
+  margin-left: 3vw;
 
+padding: 0.5vh;
+}
+
+  .DoubleWrapper
+  {
+
+    margin-top: -2vh;
+
+  }
 }
