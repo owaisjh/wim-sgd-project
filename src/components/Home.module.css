@@ -55,3 +55,19 @@ align-items: center;
 .roads:hover {
     transform: scale(1.25); 
   }
+
+
+  @media only screen and (max-width: 812px) 
+  {
+
+
+    .Container
+    {
+      font-size: 12vw;
+      margin-left: 38vw;
+      margin-top: -2vh;
+    }
+
+
+
+  }

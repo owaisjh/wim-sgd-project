@@ -25,11 +25,10 @@
 
 .container
 {
-    position: absolute;
-    top: 190vw;
+    position: relative;
+    : 10vh;
     left: 0vw;
 
-    width: 100vw;
     border-radius: 10vw;
     /* width: 20vw;
      */
