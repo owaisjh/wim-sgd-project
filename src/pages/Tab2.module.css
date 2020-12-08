@@ -59,7 +59,29 @@
 }
 .showAll
 {
+    position: relative;
+
+    top: 8vw;
+    left: 5.5vw;
+
+}
+.SingleWrapper
+{
+    margin-left: 3vw;
+    margin-top: -0.5vw;
+
+}
+
+@media only screen and (max-width: 812px)
+{
+
+        .container
+        {
+            width: 500vw;
+            height: 500vh;
 
 
-    
+        }
+
+
 }

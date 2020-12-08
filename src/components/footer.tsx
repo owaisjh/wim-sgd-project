@@ -3,7 +3,7 @@ import styles from "./footer.module.css";
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import ExploreIcon from '@material-ui/icons/Explore';
 import AddLocationIcon from '@material-ui/icons/AddLocation';
-  
+import HomeIcon from '@material-ui/icons/Home';
  
 function footer () {
 
@@ -49,6 +49,20 @@ return(
 
         </div>        
 </a>
+<a href="http://mapify-main.bss.design/index.html">
+        <div className={styles.Home}>
+
+        <HomeIcon className={styles.home} style={{fontSize:"inherit"}} 
+
+/>
+
+        </div>        
+</a>
+
+
+
+
+
 
     </div>
 );

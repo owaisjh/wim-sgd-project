@@ -26,7 +26,7 @@
      transition: transform .9s ease-in-out;
    
     font-size: 3vw;
-     left: 23vw;
+     left: 18vw;
 }
 .landmark
 {
@@ -38,7 +38,7 @@
 
     transition: transform .9s ease-in-out;
 
-    left: 47vw;
+    left: 38vw;
     font-size: 3vw;
 
 }
@@ -54,10 +54,24 @@
 
     transition: transform .9s ease-in-out;
 
-    left: 72vw;
+    left: 58vw;
     font-size: 3vw;
 }
+.home
+{
+    
+    display: inline-block;
+    position: absolute;
+    
 
+
+    color: #1f6f8b;
+
+    transition: transform .9s ease-in-out;
+
+    left: 78vw;
+    font-size: 3vw;
+}
 
 .landmark:hover {
     transform: scale(1.2); 
@@ -92,6 +106,13 @@
     
     }
     .roads
+    {
+        
+        
+        font-size: 7vw;
+    }
+
+    .home
     {
         
         

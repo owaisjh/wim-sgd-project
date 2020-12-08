@@ -172,7 +172,7 @@ function loaded()
 }
 
   return (
-    <div className="container"  >
+    <div className={styles.container}  >
         
        <main className="main" onFocus={loaded}>
         
@@ -187,11 +187,11 @@ function loaded()
       
 
 
-        <Button variant="contained" color="secondary" className="showAll" onClick={handleAlldata}>
+        <Button variant="contained" color="secondary" className={styles.showAll} onClick={handleAlldata}>
           Show All Landmarks
         </Button>
 
-        <div className="SingleWrapper">
+        <div className={styles.SingleWrapper}>
 
         <h4 className="Single"> Enter the name of the landmark</h4>
 
