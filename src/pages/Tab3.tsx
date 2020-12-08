@@ -6,13 +6,15 @@ import StartDiv from '../components/StartDiv';
 // import { addDataLayer } from "../map/addDataLayer";
 import { initializeMap } from "../map/initializeMap";
 // import { fetcher } from "../utilities/fetcher";
-import styles from "../styles/Home.module.css";
+
 // import { map, resize } from 'ionicons/icons';
 import 'mapbox-gl/dist/mapbox-gl.css' // Updating node module will keep css up to date.
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import Footer from '../components/footer';
+
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -130,30 +132,46 @@ function loaded()
       
 
 
-      <Button variant="contained" color="secondary" className="showAll">
-        Show All Landmarks
-      </Button>
-
       <div className="SingleWrapper">
 
-      <h4 className="Single"> Enter the name of the landmark</h4>
+      <h4 className="Single"> Enter road details</h4>
 
-      <div className="emailInputWrapper" >
-                <input className="emailInput"
-                    name="name"
-                    placeholder="Name"
-                    // onChange={handleChange}
-                />
-
-                <button type="submit" className="emailButton">
-                   <SearchIcon className="emailLogo" /> 
-                </button>
+    
         
 
-    </div> 
+  
+    </div>
+
+    <div className="DoubleWrapper">
+
+      
+      <input className="emailInput"
+        name="endVillage"
+        placeholder="Starting Landmark"
+        // onChange={handleChange}
+      />       
+
+    
+
+      <input className="emailInput"
+          name="endName"
+          placeholder="Ending Landmark:"
+          // onChange={handleChange}
+      />
+
+
     </div>
 
 
+
+
+
+    <Button variant="contained" color="secondary" className="showAll" 
+    // onClick={handleAlldata}
+    
+    >
+        Search?
+      </Button>
       </div>
 
 

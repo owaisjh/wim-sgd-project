@@ -7,7 +7,7 @@ import Footer from '../components/footer';
 // import { addDataLayer } from "../map/addDataLayer";
 import { initializeMap } from "../map/initializeMap";
 // import { fetcher } from "../utilities/fetcher";
-import styles from "../styles/Home.module.css";
+
 // import { map, resize } from 'ionicons/icons';
 import 'mapbox-gl/dist/mapbox-gl.css' // Updating node module will keep css up to date.
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css' 
