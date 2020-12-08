@@ -10,12 +10,12 @@ function Home (props: { LandmarkFunction: ((event: React.MouseEvent<SVGSVGElemen
 return(
     <div className={styles.Container}>
 
-        <LocationCityIcon className={styles.landmark} style={{fontSize:"8vw"}}  onClick={props.LandmarkFunction}
+        <LocationCityIcon className={styles.landmark} style={{fontSize:"inherit"}}  onClick={props.LandmarkFunction}
     
         />
 
 
-        <ExploreIcon className={styles.roads} style={{fontSize:"8vw"}} onClick={props.RoadsFunction}
+        <ExploreIcon className={styles.roads} style={{fontSize:"inherit"}} onClick={props.RoadsFunction}
     
         />
 
