@@ -45,7 +45,7 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
       }
 
       function sendPostgresql(data: any){
-        const response = fetch('https://992c3ecc5ec3.ngrok.io/storeLandmark', {  //Hosted Apis on localhost:5000
+        const response = fetch('https://39b62732f5fe.ngrok.io/storeLandmark', {  //Hosted Apis on localhost:5000
           method: 'POST',
           headers:{
             'Content-Type' : 'application/json',
@@ -57,7 +57,7 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
 
       function sendNeo4j(data: any){
     
-        const response = fetch( 'https://992c3ecc5ec3.ngrok.io/add_landmark' ,{  //Hosted Apis on localhost:5000
+        const response = fetch( 'https://39b62732f5fe.ngrok.io/add_landmark' ,{  //Hosted Apis on localhost:5000
           method: 'POST',
           headers:{
             'Content-Type' : 'application/json',
