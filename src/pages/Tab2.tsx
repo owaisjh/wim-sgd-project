@@ -106,10 +106,13 @@ const Tab2: React.FC = () => {
     getLandmarksql(name);
     console.log(geoData);
     
+    
+
     if(temp==1){
-      var name_=geoData[0].landmark_name;
-    var lat=geoData[0].geometry.coordinates[0];
-    var long=geoData[0].geometry.coordinates[1];
+      console.log("hi");
+    var name_=geoData[0].landmark_name;
+    var lat=geoData[0].geometry.coordinates[1];
+    var long=geoData[0].geometry.coordinates[0];
     console.log(geoData[0].geometry);
     console.log(name_);
     var markerPopUp = new mapboxgl.Popup({closeOnClick: false})
@@ -130,6 +133,7 @@ function handleAlldata(){
   .then((response)=>response.json())
   .then((data) =>{setGeoData(data); setTemp(1);});
   console.log(geoData);
+
   if(temp==1){
   addDataLayer(map,geoData[0]);
 }
