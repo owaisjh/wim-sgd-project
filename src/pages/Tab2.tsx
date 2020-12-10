@@ -59,7 +59,7 @@ const Tab2: React.FC = () => {
     async function getLandmarksql(name:string){
 
       const encodedLandmark = encodeURIComponent(name);
-      fetch(`https://992c3ecc5ec3.ngrok.io/getLandmark?landmark_name=${name}`)
+      fetch(`https://39b62732f5fe.ngrok.io/getLandmark?landmark_name=${name}`)
       .then((response)=>response.json())
       .then((data) =>{setGeoData(data); setTemp(1);});
   }
@@ -126,7 +126,7 @@ const Tab2: React.FC = () => {
 }
 
 function handleAlldata(){
-  fetch(`https://992c3ecc5ec3.ngrok.io/getAllLandmark`)
+  fetch(`https://39b62732f5fe.ngrok.io/getAllLandmark`)
   .then((response)=>response.json())
   .then((data) =>{setGeoData(data); setTemp(1);});
   console.log(geoData);
