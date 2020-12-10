@@ -84,7 +84,7 @@ function Roads (props: { Back: ((event: React.MouseEvent<SVGSVGElement, MouseEve
         });
       };  
 
-      await delay (4000);
+      await delay (6000);
       
         
         console.log(typeof(typeLandmark));

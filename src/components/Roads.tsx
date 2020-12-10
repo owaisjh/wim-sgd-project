@@ -93,7 +93,7 @@ async function start()
     
         console.log("hi");
 
-        await delay(2500);
+        await delay(10000);
     }
 
 }
