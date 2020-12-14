@@ -118,7 +118,7 @@ function send()
 }
 
 function submitRoutePostgres(data: any){
-  const response = fetch('https://3d45b39cec12.ngrok.io/storeRoutes', {  //Hosted Apis on localhost:5000
+  const response = fetch('https://mapify-backend.herokuapp.com/storeRoutes', {  //Hosted Apis on localhost:5000
           method: 'POST',
           headers:{
             'Content-Type' : 'application/json',
@@ -129,7 +129,7 @@ function submitRoutePostgres(data: any){
 }
 
 function submitRouteNeo4j(data: any){
-  const response = fetch('https://3d45b39cec12.ngrok.io/add_route', {  //Hosted Apis on localhost:5000
+  const response = fetch('https://mapify-backend.herokuapp.com/add_route', {  //Hosted Apis on localhost:5000
           method: 'POST',
           headers:{
             'Content-Type' : 'application/json',

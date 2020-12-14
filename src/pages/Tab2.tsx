@@ -59,7 +59,7 @@ const Tab2: React.FC = () => {
     async function getLandmarksql(name:string){
 
       const encodedLandmark = encodeURIComponent(name);
-      fetch(`https://3d45b39cec12.ngrok.io/getLandmark?landmark_name=${name}`)
+      fetch(`https://mapify-backend.herokuapp.com/getLandmark?landmark_name=${name}`)
       .then((response)=>response.json())
       .then((data) =>{setGeoData(data); setTemp(1);});
   }
@@ -129,7 +129,7 @@ const Tab2: React.FC = () => {
 }
 
 function handleAlldata(){
-  fetch(`https://3d45b39cec12.ngrok.io/getAllLandmark`)
+  fetch(`https://mapify-backend.herokuapp.com/getAllLandmark`)
   .then((response)=>response.json())
   .then((data) =>{setGeoData(data); setTemp(1);});
   console.log(geoData);

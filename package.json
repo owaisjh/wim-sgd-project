@@ -29,7 +29,10 @@
     "react-router-dom": "^5.1.2",
     "typescript": "3.8.3",
     "@capacitor/cli": "2.4.2",
-    "@types/mapbox-gl": "^1.12.8"
+    "@types/mapbox-gl": "^1.12.8",
+    "@capacitor/cli": "2.4.2",
+    "@types/mapbox-gl": "^1.12.8",
+    "react-scripts": "3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
